@@ -1,0 +1,58 @@
+# Declarer la version de docker-compose que l'on va utiliser.
+version: "3.7"
+# Definir des services
+# Chaque service seront des morceaux de mon application.
+# Un service peut être un container par exemple de container frontend
+# Mais on peut spécifier que l'on veut 4 containers frontend par exemple.
+# Lorsque l'on crée un service on doit spécifier une image
+# On peut spécifier un dockerfile
+# Il y a deux syntaxe pour la partie build.
+# ./ dans le répertoire courant trouver le fichier Dockerfile
+# Dans notre cas le fichier s'appelle siteweb.Dockerfile.
+# Ce qui nous permet
+
+services:
+  backend:
+    image: node:slim
+   # mapper le port 7777 de la carte réseau virtuel du docker vers la carte réseau de la machine hôte
+    ports: # ports est un tableau
+    - "8888:8888"
+    networks:
+    - backend
+    depends_on:
+    - db
+    entrypoint: # Chaque élément de la commande doit être séparée par -
+    - "node" 
+    - "-e" 
+    - "require('http').createServer(function (req,res) {res.end('conteneur backend node'); }).listen(8888)"
+
+  db:
+    image: mongo
+    ports: # ports est un tableau
+    - "27017"
+    networks:
+    - db
+    volumes:
+    - "db-data:/var/lib/mongodb"
+    logging:
+      driver: none # Desactive les Logs
+  
+  front:
+    build:
+      context: "./"
+      dockerfile: "siteweb.Dockerfile" # mapper le port 7777 de la carte réseau virtuel du docker vers la carte réseau de la machine hôte
+    ports: # ports est un tableau
+    - "7777:7777"
+    networks:
+    - front
+    depends_on :
+    - db
+    
+
+networks:
+  front : # front: est un object
+  backend :
+  db :
+
+volumes:
+  db-data:
