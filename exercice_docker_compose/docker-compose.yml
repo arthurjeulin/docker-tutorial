@@ -1,0 +1,61 @@
+# Declarer la version de docker-compose que l'on va utiliser.
+#docker-compose.yml
+version: "3.7"
+# Definir des services
+# Chaque service seront des morceaux de mon application.
+# Un service peut être un container par exemple de container frontend
+# Mais on peut spécifier que l'on veut 4 containers frontend par exemple.
+# Lorsque l'on crée un service on doit spécifier une image
+# On peut spécifier un dockerfile
+# Il y a deux syntaxe pour la partie build.
+# ./ dans le répertoire courant trouver le fichier Dockerfile
+# Dans notre cas le fichier s'appelle siteweb.Dockerfile.
+# Ce qui nous permet
+
+services:  
+  vote:
+    image: dockersamples/examplevotingapp_vote
+    ports: # ports est un tableau
+    - "5000:80" # rappelle 5000 port machine : 80 port interface container
+    networks:
+    - frontend
+    depends_on:
+      - cache # tant que le service redis n'est pas ON, vote ne demarre pas
+
+  result:
+    image: dockersamples/examplevotingapp_result
+    ports: # ports est un tableau
+    - "5001:80" # rappelle 5001 port machine : 80 interface container
+    networks:
+    - backend
+    depends_on:
+      - db
+  
+  backend:
+    image: dockersamples/examplevotingapp_worker
+    networks:
+    - frontend
+    - backend
+
+  cache:
+    image: redis:alpine
+    ports:
+    - "6379" # port redis par défaut
+    networks:
+    - frontend
+
+  db:
+    image: postgres:9.4 # Bonne pratique de mettre toujours la version
+    networks:
+    - backend
+    volumes:
+    - "db-data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+
+networks:
+  frontend: # front: est un object
+  backend:
+
+volumes:
+  db-data:
