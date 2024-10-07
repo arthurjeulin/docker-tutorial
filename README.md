@@ -65,7 +65,12 @@ docker image tag ubuntu monimage:montag
 ```bash
 docker run -ti -p7700:7777 python:2 python -m SimpleHTTPServer 7777
 ```
--phost_port:container_port
+- option: -ti terminal, interative
+- port: 
+    => host_port:container_port
+    => 7700:7777
+- image python:2
+- commande: python -m SimpleHTTPServer 7777
 
 ```bash
 docker network ls
@@ -103,3 +108,40 @@ docker run -ti --name bob --volume mon_volume:/tmp/project ubuntu bash
 # Open another container
 docker run -ti --volume /Users/arthur/.ssh:/root/.ssh/ ubuntu bash
 ```
+# Background
+```bash 
+# Use our docker in the background
+docker run -p7700:7777 -d python:2 python -m SimpleHTTPServer 7777
+```
+- option: -d background
+- port: 
+    => host_port:container_port
+    => 7700:7777
+- image python:2
+- commande: python -m SimpleHTTPServer 7777
+Will return the container_ID
+To kill the docker
+```bash
+docker kill container_ID
+docker kill 09f2d7e04c9b
+```
+
+```bash
+# Container that does nothing
+# tail show end of a file
+# tail -f show enf of a file continously
+# but without a file the command will wait for a file 
+# but we are not giving anything. So, the container waits.
+docker run -d --name carol ubuntu tail -f
+# Go into the a container that will already running
+# Create another processus into this container
+docker exec -ti carol bash
+# Check the list of processus
+ps aux
+```
+- execute of processus: exec
+- options: -ti terminal and interative
+- container_ID or container_name: carol
+- command: bash
+If you exit from the processus with bash the container is still running.
+As long as the first processus is running the container will run.
