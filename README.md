@@ -145,3 +145,9 @@ ps aux
 - command: bash
 If you exit from the processus with bash the container is still running.
 As long as the first processus is running the container will run.
+
+Can stop the docker with a kill
+```bash
+docker kill container_ID
+docker kill 26c
+```
