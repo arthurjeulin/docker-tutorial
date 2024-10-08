@@ -22,3 +22,10 @@ docker tag da4892d63fa8 ubuntu_perso
 # Run with the tag
 docker run -ti ubuntu_perso
 ```
+
+docker kill front && docker rm front
+
+list all the existed docker that are stop
+```bash
+docker ps -a 
+```
