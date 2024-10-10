@@ -9,4 +9,9 @@
 
 FROM ubuntu:22.04
 
+ADD install_rtmaps.sh .
+RUN chmod +x install_rtmaps.sh && ./install_rtmaps.sh
+
+ENV RTMAPS_SDKDIR=/opt/rtmaps
+
 ENTRYPOINT [ "bash" ]

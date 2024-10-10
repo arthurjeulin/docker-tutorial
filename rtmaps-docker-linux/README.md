@@ -1,5 +1,7 @@
 ## Build the image 
 ```bash
-docker build -t rtmaps-test .
+# Build the container
+docker build --no-cache --tag rtmaps-test .
+# Run the container
 docker run -ti rtmaps-test .
 ```
