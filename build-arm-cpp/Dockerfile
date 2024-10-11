@@ -7,24 +7,13 @@ RUN apt-get update && \
     curl zip unzip tar ninja-build \
     python3 python3-pip python3-setuptools python3-wheel \
     libssl-dev zlib1g-dev libcurl4-openssl-dev libx11-dev libgles2-mesa-dev x11-xserver-utils \
-    libxrandr-dev libx11-dev libxext-dev libxrender-dev libxcursor-dev libxi-dev \
-    bison libx11-dev libxft-dev libxext-dev\
+    libxrandr-dev libxext-dev libxrender-dev libxcursor-dev libxi-dev \
+    bison libxft-dev libxext-dev\
     pkg-config build-essential autoconf automake libtool \
     software-properties-common gdb gdbserver strace m4 checkinstall \
     htop net-tools iputils-ping usbutils curl \
     libxext-dev libxrender-dev libxtst-dev libcanberra-gtk-module \
-    libxdamage-dev \
-    libxrandr-dev \
-    libx11-dev \
-    libxext-dev \
-    libxrender-dev \
-    libxcursor-dev \
-    libxi-dev \
-    libxinerama-dev \
-    libxdamage-dev \
-    libxrandr-dev \
-    libxinerama-dev \
-    libdrm-dev
+    libxinerama-dev libxdamage-dev libdrm-dev    
 
 # Install proper version of CMake (3.27.5)
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5.tar.gz && \
