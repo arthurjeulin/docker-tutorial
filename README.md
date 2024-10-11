@@ -1,6 +1,6 @@
 # Docker tutorial
 
-Image pour siteweb télécharger depuis une archive gitHub.
+Image pour siteweb télécharger depuis une archive github.
 
 On télécharge le site web sur Github.
 
@@ -54,7 +54,7 @@ docker run -ti ubuntu:22.04 bash
 # Download a specific image from DockerHub
 docker pull python:2.7
 # Delete an specific image
-docker image rm IMAMGE_ID
+docker image rm IMAGE_ID
 docker image rm python:2.7
 # Cannot delete an image that is currently using into a container
 # Create a tag for an image
@@ -108,7 +108,7 @@ docker run -ti --name bob --volume mon_volume:/tmp/project ubuntu bash
 # Open another container
 docker run -ti --volume /Users/arthur/.ssh:/root/.ssh/ ubuntu bash
 ```
-# Background
+## Background
 ```bash 
 # Use our docker in the background
 docker run -p7700:7777 -d python:2 python -m SimpleHTTPServer 7777
