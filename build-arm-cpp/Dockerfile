@@ -21,7 +21,9 @@ tar -zxvf cmake-3.27.5.tar.gz && \
 cd cmake-3.27.5 && \
 ./bootstrap && \
 make && \
-make install 
+make install && \
+cd ..  && \
+rm cmake-3.27.5.tar.gz
 
 # Needed for vcpkg on ARM
 ENV VCPKG_FORCE_SYSTEM_BINARIES=1

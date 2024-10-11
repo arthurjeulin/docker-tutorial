@@ -24,3 +24,17 @@ Download the cpp project from GitHub and build it
 cd /tmp/dev-cpp && \
 git clone https://github.com/coast-autonomous/coast-tools.git -b dev
 ```
+
+## Reaccess to the Docker
+Start the docker
+```bash
+docker start dev-cpp
+```
+Go into the docker
+```bash
+docker exec -ti dev-cpp bash
+```
+Start and go into the docker
+```bash
+docker start -ai dev-cpp
+```
