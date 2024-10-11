@@ -151,3 +151,21 @@ Can stop the docker with a kill
 docker kill container_ID
 docker kill 26c
 ```
+
+## Build a Docker image
+```bash
+# Create a Dockerfile 
+# Build the image from the Dockerfile
+docker build --no-cache --tag container_name:tag path_to_dockerfile
+docker build --tag my_ubuntu .
+# Run the image just build
+docker run -ti my_ubuntu 
+# Rename container_id and add tag
+docker image tag my_ubunty ubuntu_perso:22.04
+# Kill the docker
+docker kill ubuntu_perso
+# Delete the docker
+docker rm ubuntu_perso
+# List all the existing docker
+docker ps -a
+```
