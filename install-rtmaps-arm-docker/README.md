@@ -6,7 +6,7 @@ docker build --no-cache --tag rtmaps-arm:22.04 .
 ```
 ## Run the container
 ```bash
-docker run --name rtmaps-dev -ti rtmaps-arm:22.04 
+docker run --rm --name rtmaps-dev --network host -ti rtmaps-arm:22.04 
 ```
 ## Access to the Docker
 Start the docker

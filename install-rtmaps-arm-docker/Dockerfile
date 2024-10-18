@@ -18,4 +18,8 @@ ENV RTMAPS_SDKDIR=/opt/rtmaps
 RUN mkdir /root/.RTMaps-4.0
 ADD *.lic /root/.RTMaps-4.0
 
+# Setup Credentials files to guest 
+RUN /opt/rtmaps/bin/rtmaps_daemon rtmaps_daemon --generate-cfgfile "/root/.RTMaps-4.0/Daemon.cfg" && \  
+  /opt/rtmaps/bin/rtmaps_daemon --generate-credfile "/root/.RTMaps-4.0/Credentials.cfg"
+
 ENTRYPOINT [ "bash" ]
