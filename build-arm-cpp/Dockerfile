@@ -13,7 +13,8 @@ RUN apt-get update && \
     software-properties-common gdb gdbserver strace m4 checkinstall \
     htop net-tools iputils-ping usbutils curl \
     libxext-dev libxrender-dev libxtst-dev libcanberra-gtk-module \
-    libxinerama-dev libxdamage-dev libdrm-dev    
+    libxinerama-dev libxdamage-dev libdrm-dev \
+    python3-jinja2
 
 # Install proper version of CMake (3.27.5)
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5.tar.gz && \
